@@ -52,7 +52,8 @@ class CoordinatesActivity : AppCompatActivity(), OnMapReadyCallback {
         if (uiModel.currentLocation != null && uiModel.currentLocation != maps.cameraPosition.target) {
             maps.isMyLocationEnabled = true
             maps.animateCamera(CameraUpdateFactory.newLatLngZoom(uiModel.currentLocation, 14f))
-            binding.tvCoordinates.text = " ${uiModel.currentLocation.latitude} , ${uiModel.currentLocation.longitude}"
+
+            binding.tvCoordinates.text = " Coordenadas: ${uiModel.currentLocation.latitude} , ${uiModel.currentLocation.longitude}"
         }
 
     }

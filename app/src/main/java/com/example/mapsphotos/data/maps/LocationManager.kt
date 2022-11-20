@@ -1,20 +1,16 @@
 package com.example.mapsphotos.data.maps
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.location.Location
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
 
 class LocationManager @Inject constructor() {
 
     val liveLocation = MutableLiveData<LatLng>()
-
     @SuppressLint("MissingPermission")
     fun getUserLocation(activity: AppCompatActivity) {
 
@@ -24,6 +20,8 @@ class LocationManager @Inject constructor() {
             val latLng = LatLng(location.latitude, location.longitude)
             liveLocation.postValue(latLng)
         }
+
+        updateLocation(client)
     }
 
     private val locationCallback = object : LocationCallback() {
@@ -33,5 +31,15 @@ class LocationManager @Inject constructor() {
             val latLng = LatLng(currentLocation!!.latitude, currentLocation.longitude)
             liveLocation.postValue(latLng)
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun updateLocation(client: FusedLocationProviderClient) {
+        val locationRequest = LocationRequest.create()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 1000
+
+        client.requestLocationUpdates(locationRequest, locationCallback,
+            Looper.getMainLooper())
     }
 }

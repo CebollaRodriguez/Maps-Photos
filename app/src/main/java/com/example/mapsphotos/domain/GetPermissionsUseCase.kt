@@ -2,6 +2,7 @@ package com.example.mapsphotos.domain
 
 import android.Manifest
 import android.app.Activity
+import android.os.Build
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -35,5 +36,6 @@ class GetPermissionsUseCase @Inject constructor(
 
     fun requestUserLocation() {
         locationPermissionProvider.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        locationPermissionProvider.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 }

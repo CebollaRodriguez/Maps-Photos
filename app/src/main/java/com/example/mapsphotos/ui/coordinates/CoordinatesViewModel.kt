@@ -29,8 +29,8 @@ class CoordinatesViewModel @Inject constructor(
 
         getPermissionsUseCase.liveLocation.observe(activity, Observer {
             val current = _ui.value
-            //val formattedLatLng = activity.getString(R.string.coordinates, it)
             _ui.value =current?.copy(currentLocation = it)
+            liveLocation.postValue(it)
         })
     }
 
