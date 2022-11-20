@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:background="@color/design_default_color_on_primary"
         android:id="@+id/lyPhoto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,14 +49,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Ve tu posición!"
+            android:text="Toma una foto!"
             android:textSize="32sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text=
-                "Da click y averigua tus coordenadas en tiempo real!"
+                "Da click y toma una foto para guardar tus mejores momentos!"
             android:textSize="18sp"/>
     </LinearLayout>
 

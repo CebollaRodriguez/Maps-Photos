@@ -27,6 +27,12 @@ class CoordinatesActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityCoordinatesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setUp()
+    }
+
+    private fun setUp() {
+        title = "Posición"
+
         createMapInstance()
         coordinatesViewModel.getCurrentPosition(this)
     }
