@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Maps &amp; Photos</string>
+    <string name="coordinates">Coordenadas: %d %e</string>
 </resources>

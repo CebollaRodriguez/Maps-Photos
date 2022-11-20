@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mapsphotos.R
 import com.example.mapsphotos.databinding.ActivityNavigationBinding
+import com.example.mapsphotos.ui.coordinates.CoordinatesActivity
+import com.google.android.gms.maps.GoogleMap
 
 class NavigationActivity : AppCompatActivity() {
 
@@ -17,8 +19,7 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUp()
-
-        binding.lyPosition.setOnClickListener {  }
+        binding.lyPosition.setOnClickListener { goToCoordinatesScreen() }
     }
 
     private fun setUp() {
@@ -26,6 +27,7 @@ class NavigationActivity : AppCompatActivity() {
     }
 
     private fun goToCoordinatesScreen() {
-        val intent = Intent()
+        val intent = Intent(this, CoordinatesActivity::class.java)
+        startActivity(intent)
     }
 }
