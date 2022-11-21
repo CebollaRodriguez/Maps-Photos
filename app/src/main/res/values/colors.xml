@@ -15,4 +15,13 @@
     <color name="light_secondary">#FFF6BF</color>
     <color name="light_secondaryVariant">#FFEBAD</color>
     <color name="light_text">#838080</color>
+
+    <!-- Dark theme. -->
+    <color name="dark_primary">#082032</color>
+    <color name="dark_primaryVariant">#2C394B</color>
+    <color name="dark_background">#272727</color>
+    <color name="dark_secondary">#1C0C5B</color>
+    <color name="dark_secondaryVariant">#3D2C8D</color>
+    <color name="dark_text">#D5D5D5</color>
+
 </resources>

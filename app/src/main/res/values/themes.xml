@@ -20,14 +20,13 @@
         <item name="colorAccent">@color/light_text</item>
 
     </style>
-    
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
+
+    <style name="Theme.MapsPhotos.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/inicio_ic</item>
         <item name="windowSplashScreenAnimationDuration">400</item>
         <item name="postSplashScreenTheme">@style/Theme.MapsPhotos</item>
     </style>
-
 
     <style name="Widget.MapsPhotos.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="android:backgroundTint">?attr/background</item>
