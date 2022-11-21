@@ -19,11 +19,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class PhotosActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPhotosBinding
     private val photosViewModel: PhotosViewModel by viewModels()
+
+    val REQUEST_CODE_BITMAP = 101
+    val REQUEST_CODE_CAMERA_PERMISSIONS = 102
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +75,7 @@ class PhotosActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.CAMERA),
-                2
+                REQUEST_CODE_CAMERA_PERMISSIONS
             )
         }
     }
@@ -83,7 +87,7 @@ class PhotosActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            2 -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            REQUEST_CODE_CAMERA_PERMISSIONS -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 dispatchPictureIntent()
             }
         }
@@ -94,7 +98,7 @@ class PhotosActivity : AppCompatActivity() {
 
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePicture ->
             takePicture.resolveActivity(packageManager)?.also {
-                startActivityForResult(takePicture, 1)
+                startActivityForResult(takePicture, REQUEST_CODE_BITMAP)
             }
         }
     }
@@ -102,7 +106,7 @@ class PhotosActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE_BITMAP && resultCode == RESULT_OK) {
             //getting the photo and saving in the device
             data?.extras?.let {
                 val imgBitmap = it.get("data") as Bitmap
