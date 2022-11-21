@@ -7,7 +7,6 @@ import com.example.mapsphotos.R
 import com.example.mapsphotos.databinding.ActivityNavigationBinding
 import com.example.mapsphotos.ui.coordinates.CoordinatesActivity
 import com.example.mapsphotos.ui.photos.PhotosActivity
-import com.google.android.gms.maps.GoogleMap
 
 class NavigationActivity : AppCompatActivity() {
 
