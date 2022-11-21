@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PhotosViewModel @Inject constructor(
     private val getImageFromDatabaseUseCase: GetImageFromDatabaseUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _img = MutableLiveData<ImageDomain>()
     val img: LiveData<ImageDomain> = _img
     val isLoading = MutableLiveData<Boolean>()
@@ -22,23 +22,17 @@ class PhotosViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getImageFromDatabaseUseCase.getImageFromDb()
-            if (result != null){
+            if (result != null) {
                 _img.postValue(result!!)
             }
-
         }
-
     }
 
     fun insertImg(imageDomain: ImageDomain) {
         viewModelScope.launch {
-            getImageFromDatabaseUseCase.insertImageToDb(imageDomain)
-        }
-    }
-
-    fun deleteImg() {
-        viewModelScope.launch {
+            //deleting the old picture, then save the new picture
             getImageFromDatabaseUseCase.deleteImg()
+            getImageFromDatabaseUseCase.insertImageToDb(imageDomain)
         }
     }
 }

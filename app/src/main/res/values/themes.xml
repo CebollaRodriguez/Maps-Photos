@@ -21,7 +21,7 @@
 
     </style>
 
-    <style name="Theme.MapsPhotos.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MapsPhotos.NoActionBar" parent="Theme.MapsPhotos">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

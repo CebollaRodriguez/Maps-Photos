@@ -110,7 +110,6 @@ class PhotosActivity : AppCompatActivity() {
                 binding.ivIcon.setImageBitmap(imgBitmap)
                 binding.ivIcon.setPadding(20)
                 CoroutineScope(Dispatchers.IO).launch {
-                    photosViewModel.deleteImg()
                     photosViewModel.insertImg(imageDomain = ImageDomain(imgBitmap))
                 }
             }
