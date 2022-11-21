@@ -15,12 +15,11 @@ class ImgRepository @Inject constructor(
         return response?.toDomain()
     }
 
-
     suspend fun insertImg(imageDomain: ImageDomain) {
         imgDao.insertImage(imageDomain.toDatabase())
     }
 
-    suspend fun deleteImg(){
+    suspend fun deleteImg() {
         imgDao.deleteImg()
     }
 }

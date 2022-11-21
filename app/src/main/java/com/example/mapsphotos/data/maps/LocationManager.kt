@@ -11,12 +11,13 @@ import javax.inject.Inject
 class LocationManager @Inject constructor() {
 
     val liveLocation = MutableLiveData<LatLng>()
+
     @SuppressLint("MissingPermission")
     fun getUserLocation(activity: AppCompatActivity) {
-
+        //making the client for to get the last location
         val client by lazy { LocationServices.getFusedLocationProviderClient(activity) }
 
-        client.lastLocation.addOnSuccessListener {location ->
+        client.lastLocation.addOnSuccessListener { location ->
             val latLng = LatLng(location.latitude, location.longitude)
             liveLocation.postValue(latLng)
         }
@@ -26,7 +27,7 @@ class LocationManager @Inject constructor() {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
-
+            //getting the current location
             val currentLocation = result.lastLocation
             val latLng = LatLng(currentLocation!!.latitude, currentLocation.longitude)
             liveLocation.postValue(latLng)
@@ -39,7 +40,9 @@ class LocationManager @Inject constructor() {
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 1000
 
-        client.requestLocationUpdates(locationRequest, locationCallback,
-            Looper.getMainLooper())
+        client.requestLocationUpdates(
+            locationRequest, locationCallback,
+            Looper.getMainLooper()
+        )
     }
 }

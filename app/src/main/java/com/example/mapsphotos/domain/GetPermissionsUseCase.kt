@@ -17,6 +17,7 @@ class GetPermissionsUseCase @Inject constructor(
     private lateinit var locationPermissionProvider: ActivityResultLauncher<String>
 
     fun getLocationPermissionProvider(activity: AppCompatActivity) {
+        //creating registerForActivityResult in the activity for then to get the location
         locationPermissionProvider = activity.registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { granted ->

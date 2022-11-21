@@ -6,23 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.photos.PhotosActivity">
 
-    <ImageView
-        android:id="@+id/ivIcon"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ivContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="100dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnTakePhoto"
-        android:src="@drawable/camera_ic"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:src="@drawable/camera_ic" />
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/btnTakePhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintVertical_bias="1"
         android:text="Tomar foto"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIcon"/>
+        app:layout_constraintTop_toBottomOf="@+id/ivContainer"
+        app:layout_constraintVertical_bias="1" />
 
+    <ProgressBar
+        android:id="@+id/isLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
 </androidx.constraintlayout.widget.ConstraintLayout>

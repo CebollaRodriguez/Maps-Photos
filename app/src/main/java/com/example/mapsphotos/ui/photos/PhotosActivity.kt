@@ -1,21 +1,16 @@
 package com.example.mapsphotos.ui.photos
 
 import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.graphics.drawable.toIcon
-import androidx.core.net.toFile
 import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.lifecycle.Observer
 import com.example.mapsphotos.databinding.ActivityPhotosBinding
 import com.example.mapsphotos.domain.model.ImageDomain
@@ -37,14 +32,15 @@ class PhotosActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         photosViewModel.isLoading.observe(this, Observer {
-            binding.btnTakePhoto.isVisible = it
+            binding.isLoading.isVisible = it
+            binding.ivIcon.isVisible = it
         })
+
         setUp()
 
     }
 
     private fun setUp() {
-        title = "Foto"
         getImageFromDb()
         binding.btnTakePhoto.setOnClickListener { getCameraPermission() }
     }
@@ -63,7 +59,7 @@ class PhotosActivity : AppCompatActivity() {
     }
 
     private fun getCameraPermission() {
-
+        //check permissions
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.CAMERA
@@ -87,7 +83,7 @@ class PhotosActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            2-> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            2 -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 dispatchPictureIntent()
             }
         }
@@ -112,6 +108,7 @@ class PhotosActivity : AppCompatActivity() {
                 val imgBitmap = it.get("data") as Bitmap
 
                 binding.ivIcon.setImageBitmap(imgBitmap)
+                binding.ivIcon.setPadding(20)
                 CoroutineScope(Dispatchers.IO).launch {
                     photosViewModel.deleteImg()
                     photosViewModel.insertImg(imageDomain = ImageDomain(imgBitmap))
@@ -119,6 +116,4 @@ class PhotosActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }

@@ -1,9 +1,9 @@
 package com.example.mapsphotos.ui.coordinates
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.mapsphotos.R
 import com.example.mapsphotos.data.model.uiModel
@@ -31,8 +31,6 @@ class CoordinatesActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun setUp() {
-        title = "Posición"
-
         createMapInstance()
         coordinatesViewModel.getCurrentPosition(this)
     }
@@ -59,8 +57,7 @@ class CoordinatesActivity : AppCompatActivity(), OnMapReadyCallback {
             maps.isMyLocationEnabled = true
             maps.animateCamera(CameraUpdateFactory.newLatLngZoom(uiModel.currentLocation, 14f))
 
-            binding.tvCoordinates.text = " Coordenadas: ${uiModel.currentLocation.latitude} , ${uiModel.currentLocation.longitude}"
+            binding.tvCoordinates.text = getString(R.string.coordinates, uiModel.currentLocation.latitude.toString(), uiModel.currentLocation.longitude.toString())
         }
-
     }
 }

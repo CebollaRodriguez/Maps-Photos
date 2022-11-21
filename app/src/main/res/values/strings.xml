@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Maps &amp; Photos</string>
-    <string name="coordinates">Coordenadas: %d , %d</string>
-    <string name="prefs_file">com.example.mapsphotos.PREFERENCE_FILE_KEY</string>
+    <string name="coordinates">Coordenadas: %s , %s</string>
 </resources>

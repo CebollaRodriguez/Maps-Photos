@@ -10,6 +10,7 @@ class Converters {
     @TypeConverter
     fun fromBitmap(bitmap: Bitmap): ByteArray {
         val outputStream = ByteArrayOutputStream()
+        //assigning quality on 80%
         bitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream)
         return outputStream.toByteArray()
     }

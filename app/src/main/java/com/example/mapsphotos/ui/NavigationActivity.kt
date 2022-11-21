@@ -1,9 +1,8 @@
 package com.example.mapsphotos.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mapsphotos.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mapsphotos.databinding.ActivityNavigationBinding
 import com.example.mapsphotos.ui.coordinates.CoordinatesActivity
 import com.example.mapsphotos.ui.photos.PhotosActivity
